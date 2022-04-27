@@ -1,6 +1,7 @@
 #Welcome to RPS AWS Edition
 import sys
 import random
+from turtle import xcor
 
 rock_paper_scissor = [0,1,2]
 
@@ -64,5 +65,7 @@ elif computer1_wins > computer2_wins:
 else:
     computer2_by = (computer2_wins - computer1_wins)
     print(f"Computer 2 is the winner with {computer2_wins} to {computer1_wins} winning by {computer2_by} match points!")
-    
-print(results)
+
+print()
+for x in results:
+    print(x, results[x])
