@@ -1,7 +1,14 @@
 #Welcome to RPS AWS Edition
 import sys
 import random
-from turtle import xcor
+import json
+import boto3
+
+def send_message(info):
+    sqs_client = boto3.client("sqs", region_name="ap-southeast-2")
+
+    message = info
+    response = sqs_client.send_message(QueueUrl="https://sqs.ap-southeast-2.amazonaws.com/291505762885/RPS-SQS", MessageBody=json.dumps(message))
 
 rock_paper_scissor = [0,1,2]
 
@@ -68,4 +75,5 @@ else:
 
 print()
 for x in results:
-    print(x, results[x])
+    test = x, results[x]
+    send_message(test)
