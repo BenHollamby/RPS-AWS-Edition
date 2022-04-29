@@ -1,5 +1,5 @@
 import boto3
-import ast
+import json
 
 sqs = boto3.client('sqs')
 queue_url = 'https://sqs.ap-southeast-2.amazonaws.com/291505762885/RPS-SQS'
@@ -17,19 +17,11 @@ response = sqs.receive_message(
     WaitTimeSeconds=0
 )
 
-message = response['Messages'][0]
-receipt_handle = message['ReceiptHandle']
+message = json.loads(response['Messages'][0]['Body'])
+print(message)
+round = message[0]
+results = message[1]
 
-#print(type(message))
-
-for i in message:
-    if i == 'Body':
-       tostr = str([message[i]])
-       print(type(tostr))
-       tolist = ast.literal_eval(tostr)
-       for y in tolist:
-           print(type(y))
-
-#print(receipt_handle)
-
-# ["Round3", {"computer1_choice": 2, "computer2_choice": 1, "Won": "Computer1", "Lost": "Computer2", "Tie": "False"}]
+print(round)
+for result in results:
+    print(result, results[result])
