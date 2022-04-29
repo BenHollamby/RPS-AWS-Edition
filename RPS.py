@@ -6,7 +6,6 @@ import boto3
 
 def send_message(info):
     sqs_client = boto3.client("sqs", region_name="ap-southeast-2")
-
     message = info
     response = sqs_client.send_message(QueueUrl="https://sqs.ap-southeast-2.amazonaws.com/291505762885/RPS-SQS", MessageBody=json.dumps(message))
 
@@ -58,7 +57,6 @@ for i in range(int(sys.argv[1])):
         
 print(f"There were {number_of_games} games played!")
 print(f"{ties} of those were tied games!")
-
 print(f"Computer 1 won {computer1_wins} games,and lost {computer1_losses} games!")
 print(f"Computer 2 won {computer2_wins} games and lost {computer2_losses} games!")
 
